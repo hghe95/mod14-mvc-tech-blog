@@ -75,4 +75,4 @@ router.get('/dashboard', withAuth, async (req, res) => {
     }
 });
 
-modues.exports = router;
+module.exports = router;
