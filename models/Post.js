@@ -10,10 +10,13 @@ Post.init(
             primaryKey: true,
             autoIncrement: true,
         },
-        comment_text: {
+        title: {
             type: DataTypes.STRING,
             allowNull: false,
-            validate: { len: [3] }
+        },
+        content: {
+            type: DataTypes.STRING,
+            allowNull: false,
         },
         user_id: {
             type: DataTypes.INTEGER,
@@ -22,21 +25,13 @@ Post.init(
                 model: `user`,
                 key: `id`
             }
-        },
-        post_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            references: {
-                model: `postMessage`,
-                key: `id`
-            }
         }
     },
     {
         sequelize,
         freezeTableName: true,
         underscored: true,
-        modelName: 'comment'
+        modelName: 'post'
     }
 );
 module.exports = Post;

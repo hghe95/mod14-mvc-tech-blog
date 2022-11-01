@@ -1,6 +1,12 @@
 const sequelize = require(`../config/connections`);
 const { Model, DataTypes } = require(`sequelize`);
-class User extends Model {}
+const bcrypt = require(`bcrypt`);
+
+class User extends Model {
+    checkPassword(loginPassword) {
+        return bcrypt.compareSync(loginPassword, this.password);
+    }
+}
 
 User.init(
     {
@@ -10,33 +16,31 @@ User.init(
             primaryKey: true,
             autoIncrement: true,
         },
-        comment_text: {
+        username: {
             type: DataTypes.STRING,
             allowNull: false,
-            validate: { len: [3] }
         },
-        user_id: {
-            type: DataTypes.INTEGER,
+        password: {
+            type: DataTypes.STRING,
             allowNull: false,
-            references: {
-                model: `user`,
-                key: `id`
-            }
+            validate: { len: [3]}
         },
-        post_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            references: {
-                model: `postMessage`,
-                key: `id`
-            }
-        }
     },
     {
+        hooks: {
+            beforeCreate: async(newUserData) => {
+                newUserData.password = await bcrypt.hash(newUserData.password, 10);
+                return newUserData;
+            },
+            beforeUpdate: async(updatedUserData) => {
+                updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
+                return updatedUserData;
+            }
+        },
         sequelize,
         freezeTableName: true,
         underscored: true,
-        modelName: 'comment'
+        modelName: 'user'
     }
 );
 module.exports = User;
