@@ -6,16 +6,16 @@
 * [Usage](#usage) 
 * [License](#license)
 * [Contributions](#contributions)
-* [Test](#test)
 * [Questions](#questions)
-* [Video](#video)
+
 
 ## Installation
 NPM, Sequelize, MySQL, Express, bcrypt
 
   ## Usage
-* Upon downloading, open the terminal and navigate to root file. 
-* Then type 'node index.js' and answer all of the prompts.
+* Upon downloading, open the terminal and navigate to root file
+* Then type 'npm run seed' to implement seeds
+* Then type 'npm run start' to begin the app
 
 ## License
 This application is covered by the following license: MIT.\
@@ -23,9 +23,6 @@ https://opensource.org/licenses/MIT
 
   ## Contributions
 Anybody can contribute. 
-
-  ## Test
-Simply answer all questions prompted to you.
 
   ## Questions
 If you have any questions, please contact me using the links below:\
