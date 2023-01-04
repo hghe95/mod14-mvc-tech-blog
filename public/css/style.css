@@ -2,3 +2,77 @@
     box-sizing: border-box;
 }
 
+body {
+    background-color: rgb(190, 228, 190);
+    align-content: center;
+}
+
+button {
+    color: #5b300f;
+    display:inline-block;
+    border: 0;
+    margin: auto;
+    padding: 2%;
+    cursor: pointer;
+}
+
+button#logout {
+    margin: 10px;
+    width: auto;
+}
+
+.btn {
+
+}
+
+.submit {
+    background-color: rgb(221, 136, 221);
+}
+
+.card-custom {
+    background-color: rgb(140, 243, 245);
+}
+
+header {
+    background-color: rgb(225, 218, 144);
+    font-size: x-large;
+    font-style: oblique;
+    align-items:flex-end;
+    display: flex;
+    justify-content:space-between;
+    flex-direction: column;
+    width: 100%;
+    padding: 0 2%;
+}
+
+.img-fluid {
+    margin-top: 3rem;
+}
+
+.img-create {
+    margin-top: 4rem;
+}
+
+textarea {
+    min-height: 75px;
+    min-width: 35px;
+}
+
+form label{
+    display: block;
+}
+
+.wrapper {
+    flex-direction: column;
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.username {
+
+}
+
+.password {
+
+}
