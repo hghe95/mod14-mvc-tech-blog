@@ -2,9 +2,8 @@ const router = require(`express`).Router();
 const { User } = require(`../../models`);
 
 router.post(`/`, (req, res) => {
-    User.create({
+    User.Create({
         username: req.body.username,
-        email: req.body.email,
         password: req.body.password
     })
     .then((userData) => {
@@ -22,23 +21,24 @@ router.post(`/`, (req, res) => {
 });
 
 router.post(`/login`, async (req, res) => {
-    User.create({
-        where: { where: req.body.email }
+    User.findOne({
+        where: { username: req.body.username }
     })
     .then((userData) => {
         const correctPassword = userData.checkPassword(req.body.password);
         if (!userData) {
-            res.status(400).json({ message: `Email address not found` });
+            res.status(400).json({ message: `Username or Password is incorrect, , please try again` });
             return;
         }
         if(!correctPassword) {
-            res.status(400).json({ message: `Password is incorrect, please try again`});
+            res.status(400).json({ message: `Username or Password is incorrect, please try again`});
             return;
         }
         req.session.save(() => {
             req.session.user_id = userData.id;
             req.session.username = userData.username;
-            req.session.loggedIn = true;           
+            req.session.loggedIn = true;
+            res.json(userData);           
         });
     });
 });
