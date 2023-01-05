@@ -2,8 +2,9 @@ const router = require(`express`).Router();
 const { User } = require(`../../models`);
 
 router.post(`/`, (req, res) => {
-    User.Create({
+    User.create({
         username: req.body.username,
+        email: req.body.email,
         password: req.body.password
     })
     .then((userData) => {
