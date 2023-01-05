@@ -3,8 +3,6 @@ const loginForm = async (event) => {
     const username = document.querySelector(`#username-login`);
     const password = document.querySelector(`#password-login`);
 
-
-
     if (username && password) {
         const response = await fetch(`/api/users/login`, {
             method: `post`,
