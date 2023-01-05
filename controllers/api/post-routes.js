@@ -3,16 +3,16 @@ const { Post } = require(`../../models`);
 const withAuth = require(`../../utils/auth`);
 
 router.post(`/`, withAuth, (req,res) => {
-  if (req.session) {
-    Post.create({
-      comment_text: req.body.title,      
-      post_id: req.body.content,
-      user_id: req.session.user_id
-    })
+    if (req.session) {
+        Post.create({
+            comment_text: req.body.title,      
+            post_id: req.body.content,
+            user_id: req.session.user_id
+        })
     .then(postData => res.json(postData))
     .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
+        console.log(err);
+        res.status(500).json(err);
     });
   }
 });

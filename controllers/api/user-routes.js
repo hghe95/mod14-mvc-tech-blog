@@ -18,6 +18,7 @@ router.post(`/`, (req, res) => {
     .catch(err => {
       console.log(err);
       res.status(500).json(err);
+      
     });
 });
 
@@ -44,7 +45,6 @@ router.post(`/login`, async (req, res) => {
     });
 });
 
-
 router.post(`/logout`, (req, res) => {
     if (req.session.loggedIn) {
         req.session.destroy(() => {
@@ -53,5 +53,21 @@ router.post(`/logout`, (req, res) => {
     } else {
         res.status(404).end();
     }
+});
+
+router.delete(`/:id`, withAuth, (req, res) => {
+    User.destroy({
+        where: { id: req.params.id }
+    })
+    .then (userData => {
+        if (!userData) {
+            res.status(404).json({ message: `Error: No user has this id..` })
+        }
+        res.json(userData);
+    })
+    .catch (err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
 });
 module.exports = router;
