@@ -5,7 +5,7 @@ const sequelize = require(`../config/connections`);
 
 router.get(`/`, withAuth, (req, res) => {
     Post.findAll({
-        where: { user_id: requestAnimationFrame.session.user_id },
+        where: { user_id: req.session.user_id },
         attributes: [ `id`, `title`, `content`, `created_at`],
         include: [{
             model: Comment,

@@ -45,11 +45,11 @@ router.get('/post/:id', async (req, res) => {
                 include: [User]
             }]
         });
-        post = postData.get({
+        const post = postData.get({
             plain: true
         });
         res.render(`blog`, {
-            ...blog,
+            ...post,
             loggedIn: req.session.loggedIn
         });
     } catch {
@@ -61,7 +61,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
     try {
         const userData = await User.findbyPk(req.session.user_id, {
             attributes: { exclude: [`password`] },
-            include: [{model: Blog}]
+            include: [{model: Post}]
         });
         const user = userData.get({
             plain: true

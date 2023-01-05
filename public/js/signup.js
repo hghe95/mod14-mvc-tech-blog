@@ -1,12 +1,10 @@
-const loginForm = async (event) => {
+const signupForm = async (event) => {
     event.preventDefault();
-    const username = document.querySelector(`#username-login`);
-    const password = document.querySelector(`#password-login`);
-
-
+    const username = document.querySelector(`#username-signup`);
+    const password = document.querySelector(`#password-signup`);
 
     if (username && password) {
-        const response = await fetch(`/api/users/login`, {
+        const response = await fetch(`/api/users`, {
             method: `post`,
             body: JSON.stringify({
                 username,
@@ -22,5 +20,5 @@ const loginForm = async (event) => {
     }
 }
 
-document.querySelector(`.login-form`);
-document.addEventListener(`submit`, loginForm);
+document.querySelector(`.signup-form`);
+document.addEventListener(`submit`, signupForm);

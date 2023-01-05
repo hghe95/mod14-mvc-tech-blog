@@ -14,15 +14,12 @@ button {
     margin: auto;
     padding: 2%;
     cursor: pointer;
+    border-radius: 5%;
 }
 
 button#logout {
     margin: 10px;
     width: auto;
-}
-
-.btn {
-
 }
 
 .submit {
@@ -69,10 +66,10 @@ form label{
     margin: 0 auto;
 }
 
-.username {
-
+.big-text {
+    font-size: large;
 }
 
-.password {
-
+.textarea {
+    font-family:Arial, Helvetica, sans-serif;
 }

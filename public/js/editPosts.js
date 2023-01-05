@@ -23,3 +23,6 @@ const editPosts = async (event) => {
         alert(response.statusText);
     }
 }
+
+document.querySelector('.edit-post-form')
+document.addEventListener('submit', editPosts);
