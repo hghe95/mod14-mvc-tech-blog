@@ -4,15 +4,19 @@ const deletePosts = async (event) => {
         window.location.toString().split(`/`).length - 1
     ];
 
-    const response = await fetch(`/api/posts/${id}`, {
-        method: `delete`
-    });
-
-    if (response.ok) {
-        document.location.replace(`/dashbaord`);
-    } else {
-        alert(response.statusText);
-    }
+    await fetch(`/api/posts/${id}`, {
+        method: `delete`,
+        body: JSON.stringify({
+            post_id
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(() => {
+        document.location.replace(`/dashboard`);
+    })
+    .catch(err => console.log(err))
 }
 
 document.querySelector(`.delete-post`);

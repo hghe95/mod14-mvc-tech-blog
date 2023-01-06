@@ -3,7 +3,7 @@ const commentForm = async (event) => {
     const post_id = document.querySelector(`.comment-form`);
     const comment_text = document.querySelector('textarea[name="comment-body"]');
     if (comment_text) {
-        const repsonse = await fetch(`/api/comments`, {
+        await fetch(`/api/comments`, {
             method: `post`,
             body: JSON.stringify({
                 post_id,
@@ -11,11 +11,7 @@ const commentForm = async (event) => {
             }),
             headers: { 'Content-Type': 'application/json' }
         });
-        if (response.ok) {
-            document.location.reload();
-        } else {
-            alert(response.statusText);
-        }
+        document.location.reload();
     }
 };
 

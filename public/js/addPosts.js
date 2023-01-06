@@ -1,25 +1,23 @@
 const addPostHandler = async (event) => {
     event.preventDefault();
     const title = document.querySelector(`input[name="post-title"]`).value;
-    const post_text = document.querySelector(`textarea[name="post-text"]`).value;
+    const content = document.querySelector(`textarea[name="post-content"]`).value;
 
-    const response = await fetch(`/api/posts`, {
+    await fetch(`/api/posts`, {
         method: `post`,
         body:JSON.stringify({
             title,
-            post_text
+            content
         }),
         headers: {
             'Content-Type': 'application/json'
         }
-    });
-
-    if (response.ok) {
+    })
+    .then(() => {
         document.location.replace(`/dashboard`);
-    } else {
-        alert(response.statusText);
-    }
+    })
+    .catch(err => console.log(err))
 }
 
-document.querySelector(`.new-post-form`);
+document.querySelector(`.new-post`);
 document.addEventListener(`submit`, addPostHandler);

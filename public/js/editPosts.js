@@ -1,28 +1,27 @@
 const editPosts = async (event) => {
     event.preventDefault();
     const title = document.querySelector(`input[name="post-title"]`).value;
-    const post_text = document.querySelector(`textarea[name="post-text"]`).value;
+    const content = document.querySelector(`textarea[name="content"]`).value.trim();
     const id = window.location.toString().split(`/`)[
         window.location.toString().split(`/`).length - 1
     ];
 
-    const response = await fetch(`/api/posts/${id}`, {
+    await fetch(`/api/posts/${id}`, {
         method: `put`,
         body: JSON.stringify({
             title,
-            post_text
+            content
         }),
         headers: {
             'Content-Type': 'application/json'
         }
-    });
+    })
 
-    if (response.ok) {
-        document.location.replace(`/dashbaord`);
-    } else {
-        alert(response.statusText);
-    }
+    .then(() => {
+        document.location.replace(`/dashboard`);
+    })
+    .catch(err => console.log(err))
 }
 
-document.querySelector('.edit-post-form')
+document.querySelector('.edit-post')
 document.addEventListener('submit', editPosts);
