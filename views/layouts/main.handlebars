@@ -16,11 +16,13 @@
 <body>
     <div class="wrapper">
         <header>
+            <h1>Tech Blog</h1>
             <div>
                 <nav>
                     <a href="/">Home</a>
                     {{#if loggedIn}}
                     <a href="/dashboard">Dashboard</a>
+                    <a href="/api/posts">Create a Post</a>
                     <button id="logout">Logout</button>
                     {{else}}
                     <a href="/login">Login</a>
